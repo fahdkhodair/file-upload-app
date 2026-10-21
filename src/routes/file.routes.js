@@ -1,0 +1,11 @@
+import express from "express";
+import * as fileController from "../controllers/filecontroller.js";
+import { authencation } from "../Middleware/authencation.middleware.js";
+import { multerMiddleware } from "../Middleware/multer.middleware.js";
+const router = express.Router();
+router.post("/upload", authencation, multerMiddleware, fileController.uploadFile);
+router.get("/", authencation, fileController.getAllFiles);
+router.get("/:id", authencation, fileController.getFileById);
+router.put("/:id", authencation, fileController.updateFile);
+router.delete("/:id", authencation, fileController.deleteFile);
+export default router;
